@@ -86,5 +86,5 @@ burger.addEventListener('click', e => {
   nav.dataset.state === "closed" ? nav.dataset.state = "open" : nav.dataset.state = "closed";
 });
 function index(){
-  top.location='index';
+  top.location='../../../../index';
 }
