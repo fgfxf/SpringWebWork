@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         return  findByUserEmail;
     }
     @Override
-    public void updatePwdByUser_email(String pwd,String email){
-        userRepository.updatePwdByUser_email(pwd,email);
+    public int updatePwdByUser_email(String pwd,String email){
+        return userRepository.updatePwdByUser_email(pwd,email);
     }
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--  加载数据库配置  -->
+    <properties resource="application.properties" />
+
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="fmf.webwork.fmf.Entity.FileEntity" />
+<!--        <package name="hsd.entity"/>-->
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--       连接数据库驱动         -->
+                <property name="driver" value="${spring.datasource.driver}"/>
+                <!--       数据库url         -->
+                <property name="url" value="${spring.datasource.url}"/>
+                <!--        数据库用户名        -->
+                <property name="username" value="${spring.datasource.username}"/>
+                <!--        数据库密码        -->
+                <property name="password" value="${spring.datasource.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+        <!--    mapper.xml     -->
+        <mapper resource="mapper/FileMapper.xml"/>
+    </mappers>
+
+
+</configuration>

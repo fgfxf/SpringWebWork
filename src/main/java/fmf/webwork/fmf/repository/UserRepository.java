@@ -14,5 +14,5 @@ public interface UserRepository extends JpaRepository<Users, Integer> , JpaSpeci
 
     @Modifying
     @Query("update Users m set m.user_pwd=?1 where m.user_email=?2")
-    void updatePwdByUser_email(String pwd,String email);
+    int updatePwdByUser_email(String pwd,String email);
 }

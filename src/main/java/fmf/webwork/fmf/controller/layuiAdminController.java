@@ -11,9 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class layuiAdminController {
     @RequestMapping(value = "/admin/layuiAdmin", method = RequestMethod.GET)
-    public String login(Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String layuiAdmin(Model model, HttpServletRequest request, HttpServletResponse response) {
         System.out.println("在layuiAdmin");
         return "admin/layuiAdmin";
     }
 
+    @RequestMapping(value = "/admin/layuiUploadList",method = RequestMethod.GET)
+    public String layuiUploadList(Model model, HttpServletRequest request, HttpServletResponse response){
+        System.out.println("layuiUploadList");
+        return "admin/layuiUploadList";
+    }
 }

@@ -27,7 +27,6 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
-
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -52,6 +51,10 @@
                     </table>
                 </div>
                 <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+<%--                进度条--%>
+                <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="processBar">
+                    <div class="layui-progress-bar layui-bg-red" lay-percent="0%" style="width: 100%;"><span class="layui-progress-text">100%</span></div>
+                </div>
             </div>
         </div>
     </div>
@@ -66,10 +69,12 @@
     layui.use('upload', function(){
         var $ = layui.jquery
             ,upload = layui.upload;
+        var layjquery = layui.element;
+        var element = layui.element;
         //多图片上传
         upload.render({
             elem: '#Imgs'
-            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+            ,url: '/admin/upload' //改成您自己的上传接口
             ,multiple: true
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
@@ -85,11 +90,20 @@
         var demoListView = $('#demoList')
             ,uploadListIns = upload.render({
             elem: '#testList'
-            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-            ,accept: 'file'
+            ,url: '/admin/upload' //改成您自己的上传接口  layupdate.js也要改
+            ,accept: '#Img'
             ,multiple: true
             ,auto: false
             ,bindAction: '#testListAction'
+            ,before: function(){
+                var percent = 0 + '%' //获取进度百分比
+                element.progress("processBar", percent);
+            }
+            ,progress: function(n, elem){
+                console.log("上传进度条");
+                var percent = n + '%' //获取进度百分比
+                element.progress("processBar", percent); //可配合 layui 进度条元素使用
+            }
             ,choose: function(obj){
                 var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
                 //读取本地文件
@@ -120,7 +134,10 @@
                 });
             }
             ,done: function(res, index, upload){
+                // console.log("上传之后");
+                // console.log(res);
                 if(res.files.file){ //上传成功
+
                     var tr = demoListView.find('tr#upload-'+ index)
                         ,tds = tr.children();
                     tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
@@ -130,6 +147,7 @@
                 this.error(index, upload);
             }
             ,error: function(index, upload){
+                // console.log("上传失败");
                 var tr = demoListView.find('tr#upload-'+ index)
                     ,tds = tr.children();
                 tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');

@@ -173,7 +173,7 @@
     
     //如果扩展模块（即：非内置模块）对象已经存在，则不必再加载
     if(!config.modules[item] && layui[item]){
-      config.modules[item] = url; //并记录起该扩展模块的 url
+      c.modules[item] = url; //并记录起该扩展模块的 url
     }
 
     //首次加载模块
@@ -271,7 +271,7 @@
 
   //css内部加载器
   Layui.prototype.addcss = function(firename, fn, cssname){
-    return layui.link(config.dir + 'css/' + firename, fn, cssname);
+    return layui.link(config.dir + '../../css/' + firename, fn, cssname);//css路径
   };
 
   //图片预加载

@@ -85,9 +85,11 @@ public class LoginRegisterController {
             if(!loginuser.getUser_imtype().equals(imtype)){
                 return new loginResult(StatusCode.error, "email或者预留联系方式出错").toString();
             }
-            userService.updatePwdByUser_email(passwd,email);
-            return new loginResult(StatusCode.success, "更改已经提交").toString();
-
+            if(userService.updatePwdByUser_email(passwd,email)>0){
+                return new loginResult(StatusCode.success, "更改已经提交").toString();
+            }else{
+                return new loginResult(StatusCode.error, "未知错误").toString();
+            }
 
         } catch (Exception e) {
             Integer errorcode = ((SQLException) e.getCause().getCause()).getErrorCode();
@@ -97,10 +99,7 @@ public class LoginRegisterController {
 
             return new loginResult(StatusCode.error, "被大风吹离了布吉岛 "+errorcode).toString();
         }
-
-
     }
-
     @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
     @ResponseBody
     public String getLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
