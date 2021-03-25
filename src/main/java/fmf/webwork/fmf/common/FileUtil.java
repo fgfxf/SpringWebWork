@@ -118,7 +118,7 @@ public class FileUtil {
 
         String URL = fileUploadPath+ File.separator+fileSqlPath;
 
-        // 下载文件：需要设置响应头
+        // 预览不下载文件：需要设置响应头
         response.addHeader("content-Type", "image/"+file_ext);// 二进制 都可以下载
         response.addHeader("content-Disposition", "inline;filename=" + URLEncoder.encode(fileName, "utf-8"));// filename包含文件后缀
 
