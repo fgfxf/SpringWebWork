@@ -25,9 +25,9 @@
                 <%=request.getSession().getAttribute("username") %>
             </a>
             <dl class="layui-nav-child">
-                <dd><a href="">基本资料</a></dd>
-                <dd><a href="">安全设置</a></dd>
-                <dd><a href="<%=request.getContextPath()%>/auth/logout" >退出</a></dd>
+                <dd><a href="<%=request.getContextPath()%>/admin/User">基本资料</a></dd>
+<%--                <dd><a href="">安全设置</a></dd>--%>
+                <dd><a href="<%=request.getContextPath()%>/auth/logout">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a><%=request.getSession().getAttribute("introduce")%></a></li>

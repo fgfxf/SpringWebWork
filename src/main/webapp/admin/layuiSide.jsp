@@ -9,7 +9,7 @@
                 <dl class="layui-nav-child">
                     <dd <%=(request.getRequestURI().contains("layuiImgUpload"))?"class=\"layui-this\"":""%> ><a href="<%=request.getContextPath()%>/admin/layuiImgUpload">文件上传</a></dd>
                     <dd <%=(request.getRequestURI().contains("layuiUploadList"))?"class=\"layui-this\"":""%> ><a href="<%=request.getContextPath()%>/admin/layuiUploadList">文件列表</a></dd>
-                    <dd><a href="javascript:;">列表三</a></dd>
+                    <dd <%=(request.getRequestURI().contains("layuiUser"))?"class=\"layui-this\"":""%> ><a href="<%=request.getContextPath()%>/admin/User">用户资料</a></dd>
 <%--                    <dd><a href="">超链接</a></dd>--%>
                 </dl>
             </li>

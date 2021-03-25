@@ -15,4 +15,9 @@ public interface UserRepository extends JpaRepository<Users, Integer> , JpaSpeci
     @Modifying
     @Query("update Users m set m.user_pwd=?1 where m.user_email=?2")
     int updatePwdByUser_email(String pwd,String email);
+
+    @Modifying
+    @Query("update Users m set m.user_name=?1,m.user_introduce=?2 where m.user_email=?3")
+    int updateNameandIntroduceByUser_email(String name,String introduce,String email);
+
 }

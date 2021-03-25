@@ -38,4 +38,7 @@ public class UserServiceImpl implements UserService {
     public int updatePwdByUser_email(String pwd,String email){
         return userRepository.updatePwdByUser_email(pwd,email);
     }
+    public int updateNameandIntroduceByUser_email(String name,String introduce,String email){
+        return userRepository.updateNameandIntroduceByUser_email(name,introduce,email);
+    }
 }
