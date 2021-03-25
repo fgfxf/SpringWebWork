@@ -112,4 +112,26 @@ public class FileUtil {
         out.close();
         in.close();
     }
+
+    public void viewImg(String fileName, String fileUploadPath , String fileSqlPath , HttpServletResponse response,String file_ext)
+            throws IOException{
+
+        String URL = fileUploadPath+ File.separator+fileSqlPath;
+
+        // 下载文件：需要设置响应头
+        response.addHeader("content-Type", "image/"+file_ext);// 二进制 都可以下载
+        response.addHeader("content-Disposition", "inline;filename=" + URLEncoder.encode(fileName, "utf-8"));// filename包含文件后缀
+
+        InputStream in = new FileInputStream(URL);
+        // 获取文件流
+        // 输出流 刚才读到的文件输出
+        ServletOutputStream out = response.getOutputStream();
+        byte[] bs = new byte[1024];
+        int len = -1;
+        while ((len = in.read(bs)) != -1) {// 读完为-1 !=-1 没有读完
+            out.write(bs, 0, len);
+        }
+        out.close();
+        in.close();
+    }
 }

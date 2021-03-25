@@ -7,26 +7,7 @@
     <meta name="keywords" content="范哥范小飞">
     <meta name="description" content="小小布吉岛">
     <jsp:include page="layuihtmlHead.jsp" flush="true" ></jsp:include>
-    <script>
-        //JavaScript代码区域
-        layui.use('element', function(){
-            var element = layui.element;
 
-        });
-        layui.use('layjquery', function(){
-            var layjquery = layui.element;
-
-        });
-    </script>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "/js/hm.js";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
 
 </head>
 <body class="layui-layout-body">
@@ -61,13 +42,16 @@
 <%--            下面是充数内容，为的是出现滚动条<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>充数内容<br>--%>
             <div class="layui-carousel" id="test10">
                 <div carousel-item="">
-                    <div><img src="http://img.iknow.bdimg.com/zhidaoribao2014/2015year/0120/jctj.jpg?t=1561651669"></div>
-                    <div><img src="http://img.iknow.bdimg.com/zhidaoribao2014/2015year/0120/jctj.jpg?t=1561651669"></div>
-                    <div><img src="https://dfzximg01.dftoutiao.com/news/20210324/20210324093854_c3a647db089eb73b25fce5d56718bab3_2.jpeg"></div>
-                    <div><img src="http://img.iknow.bdimg.com/zhidaoribao2014/2015year/0120/jctj.jpg?t=1561651669"></div>
-                    <div><img src="http://img.iknow.bdimg.com/zhidaoribao2014/2015year/0120/jctj.jpg?t=1561651669"></div>
-                    <div><img src="http://img.iknow.bdimg.com/zhidaoribao2014/2015year/0120/jctj.jpg?t=1561651669"></div>
-                    <div><img src="http://img.iknow.bdimg.com/zhidaoribao2014/2015year/0120/jctj.jpg?t=1561651669"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=56" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=58" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=60" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=63" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=64" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=65" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=66" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=69" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=71" width="900px"></div>
+                    <div><img src="<%=request.getContextPath()%>/admin/viewimg?FileID=72" width="900px"></div>
                 </div>
             </div>
 
@@ -88,7 +72,7 @@
         //图片轮播
         carousel.render({
             elem: '#test10'
-            ,width: '778px'
+            ,width: '900px'
             ,height: '440px'
             ,interval: 1800
         });

@@ -10,3 +10,23 @@
 <script src="<%=request.getContextPath()%>/js/layui.js" charset="utf-8"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/layui.css"  media="all">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/layuiglobal.css" media="all">
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+    layui.use('layjquery', function(){
+        var layjquery = layui.element;
+
+    });
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "/js/hm.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>

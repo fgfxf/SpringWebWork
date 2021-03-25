@@ -1,6 +1,9 @@
 package fmf.webwork.fmf.controller;
 
+import fmf.webwork.fmf.Entity.FileEntity;
 import fmf.webwork.fmf.common.FileUtil;
+import fmf.webwork.fmf.common.StatusCode;
+import fmf.webwork.fmf.common.loginResult;
 import fmf.webwork.fmf.common.uploadResult;
 import fmf.webwork.fmf.mapper.FileMapper;
 import org.apache.ibatis.io.Resources;
@@ -63,24 +66,70 @@ public class FileController {
     public String getFileList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         SqlSession session = initMybatis("config/mybatis.xml");
         FileMapper fileMapper = session.getMapper(FileMapper.class);
-        Object object;
-        if(request.getSession().getAttribute("email").equals("1216700206@qq.com"))
-            object = fileMapper.findAll();
-        else
-            object = fileMapper.findAllByUser(request.getSession().getAttribute("email").toString());
-        ((List)object).size();
+        int page=Integer.parseInt(request.getParameter("page"));
+        int limit=Integer.parseInt(request.getParameter("limit"));
+        int count=fileMapper.countFiles();
+        int start=(page-1)*limit;
+        int end=limit;
+        Object object=fileMapper.findAll(start,end);
         session.commit();
         session.close();
         response.setContentType("application/json");
-        return object.toString();
+        return "{\"code\":0,\"msg\":\"\",\"count\":"+count+",\"data\":"+object.toString()+"}";
     }
 
+    @RequestMapping(value = "/admin/deleteFile",method = RequestMethod.GET)
+    public  String getdeleteFile() throws Exception  {
+        return  "/error/404";
+    }
 
     @ResponseBody
-    @RequestMapping("/download")
-    public void download(@RequestParam("filename") HttpServletResponse response) throws IOException{
-        fileu.downLoad("down.png",filePath,map.get("fileSqlPath").toString(),response);
+    @RequestMapping(value = "/admin/deleteFile",method = RequestMethod.POST)
+    public String deleteFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        SqlSession session = initMybatis("config/mybatis.xml");
+        FileMapper fileMapper = session.getMapper(FileMapper.class);
+        int FileId=Integer.parseInt(request.getParameter("FileID"));
+        FileEntity findbyid=fileMapper.findById(FileId);
+        String filename="";
+        int retCode;
+        if(findbyid != null){
+                filename=findbyid.getFile_name();
+                retCode=StatusCode.success;
+                fileMapper.deleteFileById(FileId);
+        }else{
+                 retCode=StatusCode.error;
+                filename="数据库未找到";
+        }
+        session.commit();
+        session.close();
+        return new loginResult(retCode, filename).toString();
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/admin/download",method = RequestMethod.GET)
+    public void download(HttpServletRequest request,HttpServletResponse response) throws Exception {
+        SqlSession session = initMybatis("config/mybatis.xml");
+        FileMapper fileMapper = session.getMapper(FileMapper.class);
+        int FileId=Integer.parseInt(request.getParameter("FileID"));
+        FileEntity findbyid=fileMapper.findById(FileId);
+        if(findbyid != null){
+            fileu.downLoad(findbyid.getFile_name(),filePath,findbyid.getFile_sql_path(),response);
+        }
+        session.commit();
+        session.close();
+    }
+    @ResponseBody
+    @RequestMapping(value = "/admin/viewimg",method = RequestMethod.GET)
+    public void viewImg(HttpServletRequest request,HttpServletResponse response) throws Exception {
+        SqlSession session = initMybatis("config/mybatis.xml");
+        FileMapper fileMapper = session.getMapper(FileMapper.class);
+        int FileId=Integer.parseInt(request.getParameter("FileID"));
+        FileEntity findbyid=fileMapper.findById(FileId);
+        if(findbyid != null){
+            fileu.viewImg(findbyid.getFile_name(),filePath,findbyid.getFile_sql_path(),response,findbyid.getFile_ext());
+        }
+        session.commit();
+        session.close();
+    }
 
 }

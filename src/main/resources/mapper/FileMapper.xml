@@ -18,9 +18,15 @@
         <result column="file_owner" property="file_owner"></result>
     </resultMap>
     <select id="findAll" resultMap="fileEntity">
-        select * from upload
+        select * from upload limit #{start},#{end}
     </select>
-    <select id="findAllByUser" resultMap="fileEntity">
-        select * from upload where file_owner=(#{file_owner})
+    <select id="findById" resultMap="fileEntity">
+        select * from upload where id=#{id}
     </select>
+    <select id="countFiles" resultType="Integer">
+        select count(id) from upload
+    </select>
+    <delete id="deleteFileById">
+        delete from upload where id=#{id}
+    </delete>
 </mapper>

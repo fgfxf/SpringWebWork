@@ -7,26 +7,6 @@
     <meta name="keywords" content="范哥范小飞">
     <meta name="description" content="小小布吉岛">
     <jsp:include page="layuihtmlHead.jsp" flush="true" ></jsp:include>
-    <script>
-        //JavaScript代码区域
-        layui.use('element', function(){
-            var element = layui.element;
-
-        });
-        layui.use('layjquery', function(){
-            var layjquery = layui.element;
-
-        });
-    </script>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "/js/hm.js";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
